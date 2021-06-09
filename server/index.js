@@ -18,8 +18,8 @@ const Phone = mongoose.model('Phone', phoneSchema)
 app.listen(PORT, ()=> console.log(`server started on PORT ${PORT}`))
 
 app.get('/', async(req,res)=>{
-  await Phone.remove()
-  res.status(200)
+  const phones = await Phone.find()
+  res.status(200).json(phones)
 })
 
 app.ws('/new', (ws,res)=>{
